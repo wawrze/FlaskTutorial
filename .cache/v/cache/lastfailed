@@ -1,0 +1,4 @@
+{
+  "tests/test_auth.py::test_cli_runner_class": true, 
+  "tests/test_db.py::test_init_db_command": true
+}
