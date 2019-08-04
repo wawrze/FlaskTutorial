@@ -1,32 +1,38 @@
 import os
-import tempfile
 
 import pytest
+from datetime import datetime
+from werkzeug.security import generate_password_hash
 from flaskr import create_app
-from flaskr.db import get_db, init_db
+from flaskr import db
+from flaskr import init_db
+from flaskr.models import User
+from flaskr.models import Post
 
-with open(os.path.join(os.path.dirname(__file__), 'data.sql'), 'rb') as f:
-    _data_sql = f.read().decode('utf8')
-
+_user1_pass = generate_password_hash("test")
+_user2_pass = generate_password_hash("other")
 
 @pytest.fixture
 def app():
-    db_fd, db_path = tempfile.mkstemp()
-
     app = create_app({
         'TESTING': True,
-        'DATABASE': db_path,
+        'SQLALCHEMY_DATABASE_URI': 'sqlite:///:memory:',
     })
 
     with app.app_context():
         init_db()
-        get_db().executescript(_data_sql)
+        user1 = User(username="test", _password=_user1_pass)
+        user2 = User(username="other", _password=_user2_pass)
+        post = Post(
+            title='test title',
+            body='test\nbody',
+            author=user1,
+            created=datetime(2018, 1, 1),
+        )
+        db.session.add_all((user1, user2, post))
+        db.session.commit()
 
     yield app
-
-    os.close(db_fd)
-    os.unlink(db_path)
-
 
 @pytest.fixture
 def client(app):
