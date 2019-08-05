@@ -29,6 +29,7 @@ class Post(db.Model):
     created = db.Column(
         db.DateTime, nullable=False, server_default=db.func.current_timestamp()
     )
+    modification = db.Column(db.DateTime, nullable=True)
     title = db.Column(db.String, nullable=False)
     body = db.Column(db.String, nullable=False)
     author = db.relationship(User, lazy="joined", backref="posts")
