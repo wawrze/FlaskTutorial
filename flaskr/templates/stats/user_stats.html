@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}User username statistics{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <article class="post">
+        <h1>General</h1>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="table">Joined:</td>
+                <td class="about">2019-08-01</td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+    <hr>
+    <article class="post">
+        <h1>Posts</h1>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="table">Number of posts:</td>
+                <td class="about">12</td>
+            </tr>
+            <tr>
+                <td class="table">Posts per day:</td>
+                <td class="about">0.4</td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+    <hr>
+    <article class="post">
+        <h1>Words</h1>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="table">Number of words:</td>
+                <td class="about">120</td>
+            </tr>
+            <tr>
+                <td class="table">Words per post:</td>
+                <td class="about">10</td>
+            </tr>
+            <tr>
+                <td class="table">Words per day:</td>
+                <td class="about">4</td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+    <hr>
+    <article class="post">
+        <h1>Characters</h1>
+                <table class="table">
+            <tbody>
+            <tr>
+                <td class="table">Number of characters:</td>
+                <td class="about">600</td>
+            </tr>
+            <tr>
+                <td class="table">Characters per post:</td>
+                <td class="about">50</td>
+            </tr>
+            <tr>
+                <td class="table">Characters per day:</td>
+                <td class="about">20</td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+
+{% endblock %}

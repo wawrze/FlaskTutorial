@@ -1,8 +1,7 @@
+from flask import url_for
 from sqlalchemy.ext.hybrid import hybrid_property
 from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
-
-from flask import url_for
 
 from flaskr import db
 
@@ -22,6 +21,7 @@ class User(db.Model):
 
     def check_password(self, value):
         return check_password_hash(self.password, value)
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)

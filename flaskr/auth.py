@@ -1,6 +1,6 @@
 import functools
 
-from flask import(
+from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 
@@ -8,6 +8,7 @@ from flaskr import db
 from flaskr.models import User
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+
 
 def login_required(view):
     @functools.wraps(view)
@@ -19,6 +20,7 @@ def login_required(view):
 
     return wrapped_view
 
+
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -27,6 +29,7 @@ def load_logged_in_user():
         g.user = None
     else:
         g.user = User.query.get(user_id)
+
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -40,7 +43,7 @@ def register():
         elif not password:
             error = 'Password is required.'
         elif db.session.query(
-            User.query.filter_by(username=username).exists()
+                User.query.filter_by(username=username).exists()
         ).scalar():
             error = 'User {} is already registered.'.format(username)
 
@@ -52,6 +55,7 @@ def register():
         flash(error)
 
     return render_template('auth/register.html')
+
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
@@ -74,6 +78,7 @@ def login():
         flash(error)
 
     return render_template('auth/login.html')
+
 
 @bp.route('/logout')
 def logout():

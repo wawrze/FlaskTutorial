@@ -14,3 +14,5 @@ build/
 *.egg-info/
 
 TODO.txt
+
+.idea/

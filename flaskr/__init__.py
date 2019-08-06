@@ -7,8 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-def create_app(test_config=None):
 
+def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
     db_url = os.environ.get("DATABASE_URL")
@@ -22,7 +22,7 @@ def create_app(test_config=None):
         SQLALCHEMY_DATABASE_URI=db_url,
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
     )
-
+    print("DB URL: " + db_url)
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
     else:
@@ -35,17 +35,20 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
-    from . import auth, blog
+    from . import auth, blog, stat
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
+    app.register_blueprint(stat.bp)
 
     app.add_url_rule('/', endpoint='index')
 
     return app
 
+
 def init_db():
     db.drop_all()
     db.create_all()
+
 
 @click.command("init-db")
 @with_appcontext
