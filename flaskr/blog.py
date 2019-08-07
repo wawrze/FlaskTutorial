@@ -64,6 +64,7 @@ def update(post_id):
         else:
             post.title = title
             post.body = body
+            post.modification = db.func.current_timestamp()
             db.session.commit()
             return redirect(url_for('blog.index'))
 
