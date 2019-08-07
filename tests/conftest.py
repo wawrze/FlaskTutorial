@@ -1,16 +1,17 @@
-import os
+from datetime import datetime
 
 import pytest
-from datetime import datetime
 from werkzeug.security import generate_password_hash
+
 from flaskr import create_app
 from flaskr import db
 from flaskr import init_db
-from flaskr.models import User
 from flaskr.models import Post
+from flaskr.models import User
 
 _user1_pass = generate_password_hash("test")
 _user2_pass = generate_password_hash("other")
+
 
 @pytest.fixture
 def app():
@@ -34,13 +35,16 @@ def app():
 
     yield app
 
+
 @pytest.fixture
 def client(app):
     return app.test_client()
 
+
 @pytest.fixture
 def runner(app):
     return app.test_cli_runner()
+
 
 class AuthActions(object):
     def __init__(self, client):
@@ -54,6 +58,7 @@ class AuthActions(object):
 
     def logout(self):
         return self._client.get('/auth/logout')
+
 
 @pytest.fixture
 def auth(client):

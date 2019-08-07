@@ -13,7 +13,8 @@
             <header>
                 <div>
                     <h1>{{ post['title'] }}</h1>
-                    <div class="about">by <a href="{{ url_for('stat.user', user_id=post['author_id']) }}">{{ post.author.username }}</a>
+                    <div class="about">by <a
+                            href="{{ url_for('stat.user', user_id=post['author_id']) }}">{{ post.author.username }}</a>
                         on {{ post.created.strftime('%Y-%m-%d %H:%M') }}</div>
                 </div>
                 {% if g.user['id'] == post['author_id'] %}

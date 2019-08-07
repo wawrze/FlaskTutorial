@@ -11,7 +11,7 @@
             <tbody>
             <tr>
                 <td class="table">Number of users:</td>
-                <td class="about">12</td>
+                <td class="about">{{ users_count }}</td>
             </tr>
             </tbody>
         </table>
@@ -23,15 +23,15 @@
             <tbody>
             <tr>
                 <td class="table">Number of posts:</td>
-                <td class="about">120</td>
+                <td class="about">{{ posts_count }}</td>
             </tr>
             <tr>
                 <td class="table">Posts per day:</td>
-                <td class="about">4</td>
+                <td class="about">{{ posts_count / days }}</td>
             </tr>
             <tr>
                 <td class="table">Posts per user:</td>
-                <td class="about">10</td>
+                <td class="about">{{ posts_count / users_count }}</td>
             </tr>
             </tbody>
         </table>
@@ -43,19 +43,19 @@
             <tbody>
             <tr>
                 <td class="table">Number of words:</td>
-                <td class="about">1200</td>
+                <td class="about">{{ words_count }}</td>
             </tr>
             <tr>
                 <td class="table">Words per post:</td>
-                <td class="about">10</td>
+                <td class="about">{{ words_count / posts_count }}</td>
             </tr>
             <tr>
                 <td class="table">Words per day:</td>
-                <td class="about">40</td>
+                <td class="about">{{ words_count / days }}</td>
             </tr>
             <tr>
                 <td class="table">Words per user</td>
-                <td class="about">100</td>
+                <td class="about">{{ words_count / users_count }}</td>
             </tr>
             </tbody>
         </table>
@@ -63,23 +63,23 @@
     <hr>
     <article class="post">
         <h1>Characters</h1>
-                <table class="table">
+        <table class="table">
             <tbody>
             <tr>
                 <td class="table">Number of characters:</td>
-                <td class="about">6000</td>
+                <td class="about">{{ chars_count }}</td>
             </tr>
             <tr>
                 <td class="table">Characters per post:</td>
-                <td class="about">50</td>
+                <td class="about">{{ chars_count / posts_count }}</td>
             </tr>
             <tr>
                 <td class="table">Characters per day:</td>
-                <td class="about">200</td>
+                <td class="about">{{ chars_count / days }}0</td>
             </tr>
             <tr>
                 <td class="table">Characters per user</td>
-                <td class="about">500</td>
+                <td class="about">{{ chars_count / users_count }}</td>
             </tr>
             </tbody>
         </table>

@@ -22,7 +22,7 @@ def create_app(test_config=None):
         SQLALCHEMY_DATABASE_URI=db_url,
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
     )
-    print("DB URL: " + db_url)
+
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
     else:
