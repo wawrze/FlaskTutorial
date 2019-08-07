@@ -10,6 +10,9 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     _password = db.Column("password", db.String, nullable=False)
+    created = db.Column(
+        db.DateTime, nullable=False, server_default=db.func.current_timestamp()
+    )
 
     @hybrid_property
     def password(self):

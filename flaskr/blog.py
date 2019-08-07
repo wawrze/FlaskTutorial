@@ -11,7 +11,7 @@ bp = Blueprint('blog', __name__)
 
 
 def get_post(post_id, check_author=True):
-    post = Post.query.get_or_404(post_id, "Post id {0} doesn't exist.".format(post_id))
+    post = Post.query.get_or_404(post_id)
 
     if check_author and post.author != g.user:
         abort(403)
