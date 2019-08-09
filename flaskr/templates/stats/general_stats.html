@@ -1,88 +1,91 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1>{% block title %}General statistics{% endblock %}</h1>
+    <div class="col-11">
+        <div class="row justify-content-center">
+            <h2>{% block title %}General statistics{% endblock %}</h2>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <article class="post">
-        <h1>Users</h1>
-        <table class="table">
-            <tbody>
-            <tr>
-                <td class="table">Number of users:</td>
-                <td class="about">{{ users_count }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </article>
-    <hr>
-    <article class="post">
-        <h1>Posts</h1>
-        <table class="table">
-            <tbody>
-            <tr>
-                <td class="table">Number of posts:</td>
-                <td class="about">{{ posts_count }}</td>
-            </tr>
-            <tr>
-                <td class="table">Posts per day:</td>
-                <td class="about">{{ posts_count / days }}</td>
-            </tr>
-            <tr>
-                <td class="table">Posts per user:</td>
-                <td class="about">{{ posts_count / users_count }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </article>
-    <hr>
-    <article class="post">
-        <h1>Words</h1>
-        <table class="table">
-            <tbody>
-            <tr>
-                <td class="table">Number of words:</td>
-                <td class="about">{{ words_count }}</td>
-            </tr>
-            <tr>
-                <td class="table">Words per post:</td>
-                <td class="about">{{ words_count / posts_count }}</td>
-            </tr>
-            <tr>
-                <td class="table">Words per day:</td>
-                <td class="about">{{ words_count / days }}</td>
-            </tr>
-            <tr>
-                <td class="table">Words per user</td>
-                <td class="about">{{ words_count / users_count }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </article>
-    <hr>
-    <article class="post">
-        <h1>Characters</h1>
-        <table class="table">
-            <tbody>
-            <tr>
-                <td class="table">Number of characters:</td>
-                <td class="about">{{ chars_count }}</td>
-            </tr>
-            <tr>
-                <td class="table">Characters per post:</td>
-                <td class="about">{{ chars_count / posts_count }}</td>
-            </tr>
-            <tr>
-                <td class="table">Characters per day:</td>
-                <td class="about">{{ chars_count / days }}0</td>
-            </tr>
-            <tr>
-                <td class="table">Characters per user</td>
-                <td class="about">{{ chars_count / users_count }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </article>
+    <table class="container mt-3">
+        <tr>
+            <td class="td-25"></td>
+            <td><strong>Number of users:</strong></td>
+            <td class="td-right">{{ users_count }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <hr/>
+            </td>
+        </tr>
+        <tr>
+            <td class="td-25" rowspan="2"><h3>Posts</h3></td>
+            <td><strong>Number of posts:</strong></td>
+            <td class="td-right">{{ posts_count }}</td>
+        </tr>
+        <tr>
+            <td><strong>Posts per day:</strong></td>
+            <td class="td-right">{{ (posts_count / days)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td class="td-25"></td>
+            <td><strong>Posts per user:</strong></td>
+            <td class="td-right">{{ (posts_count / users_count)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <hr/>
+            </td>
+        </tr>
+        <tr>
+            <td class="td-25" rowspan="2"><h3>Words</h3></td>
+            <td><strong>Number of words:</strong></td>
+            <td class="td-right">{{ words_count }}</td>
+        </tr>
+        <tr>
+            <td><strong>Words per post:</strong></td>
+            <td class="td-right">{{ (words_count / posts_count)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td class="td-25"></td>
+            <td><strong>Words per day:</strong></td>
+            <td class="td-right">{{ (words_count / days)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td class="td-25"></td>
+            <td><strong>Words per user:</strong></td>
+            <td class="td-right">{{ (words_count / users_count)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <hr/>
+            </td>
+        </tr>
+        <tr>
+            <td class="td-25" rowspan="2"><h3>Characters</h3></td>
+            <td><strong>Number of characters:</strong></td>
+            <td class="td-right">{{ chars_count }}</td>
+        </tr>
+        <tr>
+            <td><strong>Characters per post:</strong></td>
+            <td class="td-right">{{ (chars_count / posts_count)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td class="td-25"></td>
+            <td><strong>Characters per day:</strong></td>
+            <td class="td-right">{{ (chars_count / days)|round(2) }}</td>
+        </tr>
+        <tr>
+            <td class="td-25"></td>
+            <td><strong>Characters per user:</strong></td>
+            <td class="td-right">{{ (chars_count / users_count)|round(2) }}</td>
+        </tr>
+    </table>
 
 {% endblock %}
+
+<!--HEADER-->
+
+<!--HEADER-->

@@ -1,32 +1,52 @@
 {% extends 'base.html' %}
-
 {% block header %}
-    <h1>{% block title %}Posts{% endblock %}</h1>
+    <div class="col-10">
+        <div class="row justify-content-center">
+            <h2>{% block title %}Posts{% endblock %}</h2>
+        </div>
+    </div>
     {% if g.user %}
-        <a class="action" href="{{ url_for('blog.create') }}">New</a>
+        <div class="col-2">
+            <div class="row justify-content-end p-1"><a class="btn btn-warning btn-sm"
+                                                        href="{{ url_for('blog.create') }}" role="button">new</a></div>
+        </div>
     {% endif %}
 {% endblock %}
 
 {% block content %}
     {% for post in posts %}
-        <article class="post">
-            <header>
-                <div>
-                    <h1>{{ post['title'] }}</h1>
-                    <div class="about">
-                        by <a
-                            href="{{ url_for('stat.user', user_id=post['author_id']) }}">{{ post.author.username }}</a>
-                        on
-                        {{ post.created.strftime('%Y-%m-%d %H:%M') }}{% if post.modification %}, last modified on
-                            {{ post.modification.strftime('%Y-%m-%d %H:%M') }}{% endif %}
+        <div class="row p-1">
+            <div class="col-2">
+                <div class="row"><h5><a href="{{ url_for('stat.user', user_id=post['author_id']) }}"
+                                        class="text-white">{{ post.author.username }}</a></h5></div>
+                <div class="row"><small><i>Posted on</i></small></div>
+                <div class="row"><small><i>{{ post.created.strftime('%Y-%m-%d %H:%M') }}</i></small></div>
+                {% if post.modification %}
+                    <div class="row mt-1"><small><i>Last modified on</i></small></div>
+                    <div class="row"><small><i>{{ post.modification.strftime('%Y-%m-%d %H:%M') }}</i></small></div>
+                {% endif %}
+            </div>
+            <div class="col-10">
+                <div class="row align-items-center">
+                    <div class="col-8"><h4>{{ post['title'] }}</h4></div>
+                    <div class="col-4">
+                        {% if g.user['id'] == post['author_id'] %}
+                            <div class="row justify-content-end">
+                                <a class="btn btn-secondary btn-sm mr-1"
+                                   href="{{ url_for('blog.update', post_id=post['id']) }}" role="button">edit</a>
+                                <form action="{{ url_for('blog.delete', post_id=post['id']) }}" method="post">
+                                    <input class="btn btn-outline-danger btn-sm" href="#" role="button" type="submit"
+                                           onclick="return confirm('Are you sure?');" value="delete">
+                                </form>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
-                {% if g.user['id'] == post['author_id'] %}
-                    <a class="action" href="{{ url_for('blog.update', post_id=post['id']) }}">Edit</a>
-                {% endif %}
-            </header>
-            <p class="body">{{ post['body'] }}</p>
-        </article>
+                <hr/>
+                <div class="row">{{ post['body'] }}</div>
+            </div>
+        </div>
+
         {% if not loop.last %}
             <hr>
         {% endif %}

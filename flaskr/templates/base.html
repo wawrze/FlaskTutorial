@@ -1,29 +1,49 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - Flaskr</title>
+<title>{% block title %}{% endblock %} - Simple Flask Blog</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-    <h1><a href="{{ url_for('index') }}">Flaskr</a></h1>
-    <ul>
+<body class="bg-primary">
+<div class="container p-2">
+    <div class="row align-items-center p-1">
         {% if g.user %}
-            <li><a href="{{ url_for('stat.user', user_id=g.user['id']) }}">{{ g.user['username'] }}</a>
-            <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-                {% else %}
-            <li><a href="{{ url_for('auth.register') }}">Register</a>
-            <li><a href="{{ url_for('auth.login') }}">Log In</a>
+            <div class="col-8"><h6><i>Hello, <a href="{{ url_for('stat.user', user_id=g.user['id']) }}"
+                                                class="text-white">{{ g.user['username'] }}</a>!</i></h6></div>
+            <div class="col-4">
+                <div class="row justify-content-end">
+                    <a class="btn btn-outline-primary btn-sm" href="{{ url_for('auth.logout') }}" role="button">log
+                        out</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-8"></div>
+            <div class="col-4">
+                <div class="row justify-content-end">
+                    <a class="btn btn-primary btn-sm mr-1" href="{{ url_for('auth.register') }}"
+                       role="button">register</a>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ url_for('auth.login') }}" role="button">log
+                        in</a>
+                </div>
+            </div>
         {% endif %}
-    </ul>
-</nav>
-<section class="content">
-    <header>
+    </div>
+    <div class="row bg-secondary justify-content-center">
+        <a href="{{ url_for('index') }}"><h1>Simple Flask Blog</h1></a>
+    </div>
+    <br>
+    <div class="row bg-dark align-items-center mb-3">
         {% block header %}{% endblock %}
-    </header>
+    </div>
     {% for message in get_flashed_messages() %}
         <div class="flash">{{ message }}</div>
     {% endfor %}
     {% block content %}{% endblock %}
-</section>
-<nav>
-    <ul>
-        <li><a href="{{ url_for('stat.general') }}">Statistics</a></li>
-    </ul>
-</nav>
+    <div class="row bg-secondary align-items-center p-1 mt-3">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <div class="row justify-content-end p-1">
+                <a class="btn btn-outline-warning btn-sm" href="{{ url_for('stat.general') }}"
+                   role="button">statistics</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
