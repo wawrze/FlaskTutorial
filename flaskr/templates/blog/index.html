@@ -7,8 +7,9 @@
     </div>
     {% if g.user %}
         <div class="col-2">
-            <div class="row justify-content-end p-1"><a class="btn btn-warning btn-sm"
-                                                        href="{{ url_for('blog.create') }}" role="button">new</a></div>
+            <div class="row justify-content-end p-1">
+                <a class="btn btn-warning btn-sm" href="{{ url_for('blog.create') }}" role="button">new</a>
+            </div>
         </div>
     {% endif %}
 {% endblock %}
@@ -35,8 +36,13 @@
                                 <a class="btn btn-secondary btn-sm mr-1"
                                    href="{{ url_for('blog.update', post_id=post['id']) }}" role="button">edit</a>
                                 <form action="{{ url_for('blog.delete', post_id=post['id']) }}" method="post">
-                                    <input class="btn btn-outline-danger btn-sm" href="#" role="button" type="submit"
-                                           onclick="return confirm('Are you sure?');" value="delete">
+                                    <input
+                                            class="btn btn-outline-danger btn-sm"
+                                            role="button"
+                                            type="submit"
+                                            onclick="return confirm('Are you sure?');"
+                                            value="delete"
+                                    >
                                 </form>
                             </div>
                         {% endif %}
