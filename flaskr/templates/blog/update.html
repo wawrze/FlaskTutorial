@@ -35,9 +35,7 @@
                 </div>
             </div>
             <div class="col-10">
-            <textarea name="body" class="form-control" id="body" rows="5" placeholder="Enter post body">
-                {{ request.form['body'] or post['body'] }}
-            </textarea>
+            <textarea name="body" class="form-control" id="body" rows="5" placeholder="Enter post body">{{ request.form['body'] or post['body'] }}</textarea>
             </div>
         </div>
         <div class="row align-items-center mt-1">
